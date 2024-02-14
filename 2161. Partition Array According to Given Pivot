@@ -1,0 +1,37 @@
+class Solution {
+    public int[] pivotArray(int[] nums, int pivot) {
+        int [] res = new int[nums.length];
+        int greater=0,lesser=0,equal = 0;
+        for(int num : nums){
+            if(num > pivot){
+                greater++;
+            }
+            else if(num < pivot){
+                lesser++;
+            }
+            else{
+                equal++;
+            }
+        }
+        int lesserIndex = 0;
+        int equalIndex = lesser;
+        int greaterIndex = lesser+equal;
+        
+        for(int num : nums){
+            if(num < pivot){
+                res[lesserIndex] = num;
+                lesserIndex++;
+            }
+            if(num == pivot){
+                res[equalIndex] = num;
+                equalIndex++;
+            }
+            if(num > pivot){
+                res[greaterIndex] = num;
+                greaterIndex++;
+            }
+        }
+
+        return res;
+    }
+}
