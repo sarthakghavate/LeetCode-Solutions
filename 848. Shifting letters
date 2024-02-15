@@ -1,0 +1,18 @@
+// 848 : Shifting letters
+// https://leetcode.com/problems/shifting-letters/
+class Solution {
+    public String shiftingLetters(String s, int[] shifts) {
+        char [] arr  = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+        StringBuilder sb = new StringBuilder();
+        int shift = 0;
+        for(int i = s.length()-1; i >= 0; i--){
+            shift += shifts[i]%26;
+            int index =  ((int)(s.charAt(i)) - 97 + shift)%52;
+            
+            sb.append(arr[index]);
+        }
+        return sb.reverse().toString();
+    }
+}
