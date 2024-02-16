@@ -1,0 +1,12 @@
+// Bit Manipulation 
+// https://leetcode.com/problems/single-number/
+class Solution {
+    public int singleNumber(int[] nums) {
+        // Note : XOR of same number is 0
+        int ans = 0;
+        for(int num : nums){
+            ans = ans^num;
+        }
+        return ans;
+    }
+}
