@@ -1,0 +1,17 @@
+class Solution {
+    public boolean isRectangleOverlap(int[] rect1, int[] rect2) {
+        // find the coordinates of overlapped rectangle
+       int x1 = Math.max(rect1[0],rect2[0]); 
+       int y1 = Math.max(rect1[1],rect2[1]); 
+
+       int x2 = Math.min(rect1[2],rect2[2]); 
+       int y2 = Math.min(rect1[3],rect2[3]);
+
+        // observe from the testcases that if x2-x1 && y2-y2 both are positive the rects overlap
+        if(x2-x1 > 0 && y2-y1 > 0){
+            return true;
+        }
+
+       return false;
+    }
+}
