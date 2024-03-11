@@ -1,0 +1,66 @@
+//https://leetcode.com/problems/custom-sort-string/?envType=daily-question&envId=2024-03-11
+class Solution {
+    public String customSortString(String order, String s) {
+        // first approach : (wrong) 
+
+        // StringBuilder sb = new StringBuilder();
+        // char [] seq = order.toCharArray();
+        // char [] str = s.toCharArray();
+
+        // for(char ch : seq){
+        //     if(s.indexOf(ch) != -1){
+        //         sb.append(ch);
+        //     }
+        // }
+
+        // for(char ch : str){
+        //     if(sb.toString().indexOf(ch) == -1){
+        //         sb.append(ch);
+        //     }
+        // }
+
+        // return sb.toString();
+        // // op : kqep
+        // // exp : kqeep
+
+        // Second approach:
+        /*
+        Correct approach :
+        Step 1 :  Make an array freq to store frequency of charcters in s string.
+        Step 2 :  Traverse through ord array (which is the array of chars of order string) 
+                  if char in ord is found in s then append the number of times that char has appeard in s 
+                  for this we will use our freq array.
+        Step 3 :  After appending each char of ord in result we will update its index in freq to 0 
+        Step 4 :  For the remaining chars in s which are not yet append in result , we will run a 
+                  for loop on freq array (str) and check if that particular char freq is non zero , if yes
+                  then append it to result freq times. 
+
+        */
+    
+        int [] freq = new int [26];  // to store freq of chars in s
+
+        for(char ch : s.toCharArray()){
+            freq[ch - 'a']++;
+        }
+
+        StringBuilder sb = new StringBuilder();  // to store answer
+        char [] ord = order.toCharArray();
+       
+        for(char ch : ord){
+            int idx = freq[ch - 97];   
+            while(idx != 0){
+                sb.append(ch);
+                idx--;
+            }
+            freq[ch-97] = 0;  // freq of appended char is set to 0
+        }
+    
+        for(int i = 0 ; i < 26 ; i++){
+            while(freq[i] != 0){
+                sb.append((char)('a' + i));
+                freq[i]--;
+            }
+        }
+        return sb.toString();
+    }
+}
