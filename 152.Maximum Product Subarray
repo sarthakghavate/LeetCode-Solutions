@@ -1,0 +1,30 @@
+class Solution {
+    public int maxProduct(int[] nums) {
+
+        // TC : O(N)
+        // SC : O(1)
+
+        int leftProduct = 1;
+        int rightProduct = 1;
+        int ans = -11; // see constraints otherwise nums[0] will also work
+
+        for(int i = 0; i < nums.length; i++){
+            // if left or right product becomes zero , to avoid further products to be zero
+            // set them to 1
+            if(leftProduct == 0){
+                leftProduct = 1;
+            }
+            if(rightProduct == 0){
+                rightProduct = 1;
+            }
+        
+            // calculate leftproduct
+            leftProduct = leftProduct * nums[i];
+            // calculate rightproduct
+            rightProduct = rightProduct * nums[nums.length - 1 - i];
+            // set ans to the max product dfound so far
+            ans = Math.max(ans , (Math.max(leftProduct,rightProduct)));
+        }
+        return ans;
+    }
+}
